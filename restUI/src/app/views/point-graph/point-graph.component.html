@@ -1,0 +1,6 @@
+<div class="graph-area">
+<!--  Это нижний статический слой канваса, на котором нарисован только график-->
+  <canvas #canvasGraph width="420" height="420" class="graph"></canvas>
+  <canvas #canvasPoints (click)="addPoint($event)" width="420" height="420" class="points"></canvas>
+<!--  Здесь верхним слоем будет второй элемент канваса, который будет перересовываться-->
+</div>

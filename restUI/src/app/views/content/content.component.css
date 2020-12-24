@@ -1,0 +1,21 @@
+.table{
+  padding: 10px 30px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.useful {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.form, .canvas {
+  margin: 15px;
+}
+
+
+

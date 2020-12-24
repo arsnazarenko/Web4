@@ -1,0 +1,17 @@
+.graph-area {
+  border: 1px solid black;
+  padding: 20px;
+  width: max-content;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+}
+
+.graph {
+
+}
+
+.points {
+  position: relative;
+  top: -420px;
+}

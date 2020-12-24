@@ -1,0 +1,48 @@
+<!--<form (ngSubmit)="submit(x.value, y.value, r.value)" class="point_form" >-->
+<!--  <div class="x_value">-->
+<!--    <label for="x">X</label>-->
+<!--    <input [ngModel]="request.x" #x="ngModel" id="x" name="x" type="text">-->
+<!--  </div>-->
+<!--  <div class="slider-container">-->
+<!--    <div class="y_value">-->
+<!--      <label for="y">Y</label>-->
+<!--      <p-slider [ngModel]="request.y" #y="ngModel" id="y" name="y" [min]=-3 [max]=5 [step]=0.5 ></p-slider>-->
+<!--    </div>-->
+<!--    <span>Input:</span>-->
+<!--    <span class="sliderInput">{{y.value}}</span>-->
+<!--  </div>-->
+<!--  <div class="r_value">-->
+<!--    <label for="r">R</label>-->
+<!--    <input [(ngModel)]="request.r" #r="ngModel" (ngModelChange)="onPointsUpdate(r.value)" id="r" name="r" type="text">-->
+<!--  </div>-->
+<!--  <div class="button">-->
+<!--    <button class="submit-button">Submit</button>-->
+<!--  </div>-->
+<!--</form>-->
+
+
+<form [formGroup]="myForm" (ngSubmit)="submit()"  class="point_form" >
+  <div class="x_value">
+    <label for="x">X</label>
+    <input class="form-control" id="x" name="x" type="text" formControlName="xValue">
+  </div>
+  <div class="slider-container">
+    <div class="y_value">
+      <label for="y">Y</label>
+      <p-slider  id="y" name="y" [min]=-3 [max]=5 [step]=0.5 formControlName="yValue"></p-slider>
+    </div>
+    <span>Input:</span>
+    <span class="sliderInput">{{myForm.controls.yValue.value}}</span>
+  </div>
+  <div class="r_value" >
+    <label for="r">R</label>
+    <input class="form-control" id="r" name="r" type="text" formControlName="rValue">
+  </div>
+  <div class="button">
+    <button class="submit-button" [disabled]="!myForm.valid">Submit</button>
+    <div class="icons">
+      <i class="pi pi-thumbs-up" style="font-size: 2em" *ngIf="myForm.valid"></i>
+      <i class="pi pi-thumbs-down"  style="font-size: 2em" *ngIf="!myForm.valid"></i>
+    </div>
+  </div>
+</form>

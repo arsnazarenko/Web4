@@ -1,0 +1,118 @@
+.point_form {
+  border-radius: 2px;
+  padding: 10px;
+  border: 1px solid grey;
+  margin: 15px;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  width: 365px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.point_form input:focus, .point_form textarea:focus, .point_form select:focus{
+  border: 1px solid cornflowerblue ;
+}
+
+
+
+.r_value, .x_value, .y_value {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.x_value input, .r_value input {
+  width: 240px;
+  height: 32px;
+  padding: 3px 6px;
+  font-size: 14px;
+}
+
+.y_value p-slider, .x_value input, .r_value input {
+  width: 240px;
+}
+
+p-slider {
+  position: relative;
+  top: 5px
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.icons i {
+  margin-top: 15px;
+  margin-right: 5px;
+}
+
+
+.submit-button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #21519F;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.submit-button:hover {
+  background-color: #1E3F79
+}
+
+.submit-button:active {
+  background-color: #1E3F79;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+.point_form label {
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.sliderInput {
+  width: 15px;
+  margin-right: 5px;
+}
+
+
+.form-control.ng-touched.ng-invalid {
+  border: 1px solid orangered;
+}
+
+.form-control.ng-touched.ng-valid {
+  border: 1px solid lawngreen;
+}
+
+
+
+
