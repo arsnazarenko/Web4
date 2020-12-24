@@ -3,4 +3,4 @@ out
 .idea/
 *.iml
 resources/
-*/node_modules/
+restUI/node_modules/
