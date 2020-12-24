@@ -3,4 +3,29 @@ out
 .idea/
 *.iml
 resources/
-restUI/node_modules/
+node_modules/
+
+# compiled output
+dist
+tmp
+out-tsc
+
+
+# IDEs and editors
+.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+
+# misc
+.sass-cache
+connect.lock
+coverage
+libpeerconnection.log
+npm-debug.log
+testem.log
+typings
