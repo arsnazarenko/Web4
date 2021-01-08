@@ -1,46 +1,26 @@
 package ru.itmo.students.springRest.domain;
 
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
-import javax.persistence.Table;
-import java.util.Collection;
+import javax.persistence.*;
 
-@Table(schema = "usr")
-public class User implements UserDetails {
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+@Table(name = "usr")
+@Entity
+@Data
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usr_sequence")
+    @SequenceGenerator(name = "usr_sequence", initialValue = 1, allocationSize = 1)
+    private Long id;
 
-    @Override
-    public String getPassword() {
-        return null;
-    }
+    private String login;
 
-    @Override
-    public String getUsername() {
-        return null;
-    }
+    @JsonIgnore
+    private String password;
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 }

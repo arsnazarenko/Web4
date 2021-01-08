@@ -1,14 +1,18 @@
 package ru.itmo.students.springRest.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
 @Table
+@Data
 public class Point {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "point_sequence")
+    @SequenceGenerator(name = "point_sequence", initialValue = 1, allocationSize = 1)
     private Long id;
     @NotNull(message = "X filed cannot be null")
     private Double x;
@@ -19,45 +23,6 @@ public class Point {
     @NotNull(message = "Result filed cannot be null")
     private Boolean result;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Double getX() {
-        return x;
-    }
-
-    public void setX(Double x) {
-        this.x = x;
-    }
-
-    public Double getY() {
-        return y;
-    }
-
-    public void setY(Double y) {
-        this.y = y;
-    }
-
-    public Double getR() {
-        return r;
-    }
-
-    public void setR(Double r) {
-        this.r = r;
-    }
-
-    public Boolean getResult() {
-        return result;
-    }
-
-    public void setResult(Boolean result) {
-        this.result = result;
-    }
 
     @Override
     public boolean equals(Object o) {
