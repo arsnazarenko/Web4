@@ -1,12 +1,12 @@
-<div class="useful">
+<div class="useful" *ngIf="points">
   <div class="form">
     <app-point-form (pointsUpdated)="onPointsUpdate($event)" [points]="points"></app-point-form>
   </div>
-  <div class="canvas" *ngIf="points">
+  <div class="canvas">
     <app-point-graph [points]="points"></app-point-graph>
   </div>
 </div>
-<div class="table" *ngIf="points">
+<div class="table">
   <app-point-data [points]="points"></app-point-data>
 </div>
 

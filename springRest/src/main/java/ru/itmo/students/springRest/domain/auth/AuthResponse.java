@@ -1,4 +1,4 @@
-package ru.itmo.students.springRest.controller.auth;
+package ru.itmo.students.springRest.domain.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

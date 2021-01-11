@@ -1,9 +1,10 @@
 package ru.itmo.students.springRest.controller;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import ru.itmo.students.springRest.domain.Point;
-import ru.itmo.students.springRest.exceptions.NotFoundException;
 import ru.itmo.students.springRest.repo.PointRepo;
 import ru.itmo.students.springRest.service.AreaCheckService;
 
@@ -32,7 +33,7 @@ public class PointController {
     public Point getOne(
             @PathVariable("id") Long id
     ) {
-        return pointRepo.findById(id).orElseThrow(NotFoundException::new);
+        return pointRepo.findById(id).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
 
@@ -50,7 +51,7 @@ public class PointController {
             @PathVariable("id") Long id,
             @RequestBody Point point
     ) {
-        Point pointFromDb = pointRepo.findById(id).orElseThrow(NotFoundException::new);
+        Point pointFromDb = pointRepo.findById(id).orElseThrow(() ->  new ResponseStatusException(HttpStatus.NOT_FOUND));
         Point resultPoint = areaCheckService.getResultPoint(point);
         BeanUtils.copyProperties(resultPoint, pointFromDb, "id");
         return pointRepo.save(pointFromDb);

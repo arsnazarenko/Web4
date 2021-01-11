@@ -11,6 +11,9 @@ import {SliderModule} from 'primeng/slider';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ContentComponent } from './views/content/content.component';
 import { PointGraphComponent } from './views/point-graph/point-graph.component';
+import { MainPageComponent } from './views/main-page/main-page.component';
+import { LoginPageComponent } from './views/login-page/login-page.component';
+import { NotFoundPageComponent } from './views/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { PointGraphComponent } from './views/point-graph/point-graph.component';
     PointDataComponent,
     PointFormComponent,
     ContentComponent,
-    PointGraphComponent
+    PointGraphComponent,
+    MainPageComponent,
+    LoginPageComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,

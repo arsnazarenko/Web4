@@ -1,11 +1,13 @@
 package ru.itmo.students.springRest.controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import ru.itmo.students.springRest.config.jwt.JwtProvider;
-import ru.itmo.students.springRest.controller.auth.*;
+import ru.itmo.students.springRest.domain.auth.*;
 import ru.itmo.students.springRest.domain.User;
 import ru.itmo.students.springRest.service.UsersService;
 import javax.validation.Valid;
@@ -28,15 +30,15 @@ public class AuthController {
             return new RegistrationResponse(user.getLogin(), RegisterStatus.SUCCESS);
         }
         return new RegistrationResponse(user.getLogin(), RegisterStatus.RESERVED);
-        //FIXME: исправить генерацию одной последовательности числовой на все таблицы!
     }
 
     @PostMapping("/auth")
     public AuthResponse auth(@RequestBody AuthRequest request) {
         User user = userService.findByLoginAndPassword(request.getLogin(), request.getPassword());
-        System.out.println(user);
+        if(user == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
         String token = jwtProvider.generateToken(user.getLogin());
-        System.out.println(token);
         return new AuthResponse(token);
     }
 
