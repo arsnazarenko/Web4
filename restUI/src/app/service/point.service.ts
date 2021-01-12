@@ -11,23 +11,14 @@ import {PointRequest} from '../model/pointRequest';
 })
 
 export class PointService {
-
   private HTTP_OPTIONS = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.getItem('auth-token')})
   };
 
   readonly REST_API_URL = 'http://localhost:8080/point';
-  readonly REST_API_AUTH = 'http://localhost:8080/auth';
-  readonly REST_API_REG = 'http://localhost:8080/register';
+
 
   constructor(private httpClient: HttpClient) {
-  }
-
-  public login(log: string, passwd: string): Observable<any> {
-    return this.httpClient.post<any>(this.REST_API_AUTH, {login: log, password: passwd}, this.HTTP_OPTIONS)
-      .pipe(
-        catchError(this.handleError)
-      );
   }
 
 

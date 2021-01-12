@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {PointService} from '../../service/point.service';
 import {Point} from '../../model/point';
 import {PointRequest} from '../../model/pointRequest';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-point-form',
@@ -10,10 +11,13 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./point-form.component.css']
 })
 
-export class PointFormComponent implements OnInit {
+export class PointFormComponent implements OnInit, OnDestroy {
   myForm: FormGroup;
   @Input() points: Point[];
   @Output() pointsUpdated = new EventEmitter<any>();
+
+
+  private changeSubscription: Subscription;
 
   constructor(private pointService: PointService) {
     this.myForm = new FormGroup({
@@ -21,12 +25,12 @@ export class PointFormComponent implements OnInit {
       yValue: new FormControl(1, Validators.required),
       rValue: new FormControl(null, [Validators.required, Validators.pattern(/^(([1-4]{1}(\.[0-9]+)?)|5(\.0+)?)$/)])
     });
-    this.myForm.controls.rValue.valueChanges.subscribe(r => {
-        this.onPointsUpdate({radius: this.myForm.controls.rValue.value, valid: this.myForm.controls.rValue.valid});
-    });
   }
 
   ngOnInit(): void {
+    this.changeSubscription = this.myForm.controls.rValue.valueChanges.subscribe(r => {
+      this.onPointsUpdate({radius: this.myForm.controls.rValue.value, valid: this.myForm.controls.rValue.valid});
+    });
   }
 
   onPointsUpdate(radiusInfo: any): void {
@@ -34,7 +38,7 @@ export class PointFormComponent implements OnInit {
   }
 
 
-  submit(): void {
+  onSubmit(): void {
     const xVal = this.myForm.controls.xValue.value;
     const yVal = this.myForm.controls.yValue.value;
     const rVal = this.myForm.controls.rValue.value;
@@ -46,5 +50,11 @@ export class PointFormComponent implements OnInit {
         // будем передавать объект {валидноть, радиус}, валидность будем получать из состояний формы
         this.onPointsUpdate({radius: rVal, valid: this.myForm.controls.rValue.valid});
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.changeSubscription) {
+      this.changeSubscription.unsubscribe();
+    }
   }
 }

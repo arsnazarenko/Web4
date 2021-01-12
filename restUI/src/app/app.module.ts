@@ -14,6 +14,7 @@ import { PointGraphComponent } from './views/point-graph/point-graph.component';
 import { MainPageComponent } from './views/main-page/main-page.component';
 import { LoginPageComponent } from './views/login-page/login-page.component';
 import { NotFoundPageComponent } from './views/not-found-page/not-found-page.component';
+import { RegisterPageComponent } from './views/register-page/register-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NotFoundPageComponent } from './views/not-found-page/not-found-page.com
     PointGraphComponent,
     MainPageComponent,
     LoginPageComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,

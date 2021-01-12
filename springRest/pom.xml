@@ -20,6 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+
     <build>
         <finalName>springRest</finalName>
         <plugins>
@@ -29,6 +30,9 @@
             </plugin>
         </plugins>
     </build>
+
+
+
 
     <dependencies>
         <dependency>
@@ -42,6 +46,7 @@
             <version>1.18.16</version>
             <scope>provided</scope>
         </dependency>
+
 
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>

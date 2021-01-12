@@ -1,5 +1,5 @@
-<p1>Login</p1>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<p1>Registration</p1>
+<form [formGroup]="regForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="login">Login</label>
     <input class="form-control" id="login" name="login" type="text" formControlName="login">
@@ -9,6 +9,6 @@
     <input class="form-control" id="password" name="password" type="password" formControlName="password">
   </div>
   <div>
-    <button [disabled]="!loginForm.valid">Submit</button>
+    <button [disabled]="!regForm.valid">Submit</button>
   </div>
 </form>
