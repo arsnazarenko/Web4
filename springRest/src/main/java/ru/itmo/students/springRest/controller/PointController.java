@@ -2,6 +2,7 @@ package ru.itmo.students.springRest.controller;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.itmo.students.springRest.domain.Point;
@@ -47,6 +48,7 @@ public class PointController {
     //fetch('point', {method: 'POST', headers: {'Content-type': 'application/json'}, body: JSON.stringify({x: 12, y: 4, r: 23})}).then(result => console.log(result));
 
     @PutMapping("{id}")
+    @Secured("ROLE_ADMIN")
     public Point update(
             @PathVariable("id") Long id,
             @RequestBody Point point
@@ -60,8 +62,8 @@ public class PointController {
     // Для проверки:
     // fetch('point/4', {method: 'PUT', headers: {'Content-type': 'application/json'}, body: JSON.stringify({x: 12, y: 4, r: 23})}).then(result => console.log(result));
 
-
     @DeleteMapping("{id}")
+    @Secured("ROLE_ADMIN")
     public void delete(@PathVariable("id") Point point)     //Spring сам получает объект point по его id
     {
         pointRepo.delete(point);
