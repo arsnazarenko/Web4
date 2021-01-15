@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Table(name = "usr")
 @Entity
@@ -29,8 +28,8 @@ public class User {
     private UserRole role;
 
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Set<Point> userPoints;
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    private Set<Point> userPoints;
 
 }

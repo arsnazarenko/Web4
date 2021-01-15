@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.itmo.students.springRest.domain.Point;
 import ru.itmo.students.springRest.service.PointService;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Collection;
 
 @RestController
@@ -19,25 +20,25 @@ public class PointController {
 
 
     @GetMapping
-    public Collection<Point> getAll(@RequestHeader(name = "Authorization") String token) {
-        return pointService.getAll(token);
+    public Collection<Point> getAll(Principal principal) {
+        return pointService.getAll(principal.getName());
     }
 
 
     @GetMapping("{id}")
     public Point getOne(
             @PathVariable("id") Long id,
-            @RequestHeader("Authorization") String token
+            Principal principal
     ) {
-        return pointService.getOne(id, token);
+        return pointService.getOne(id, principal.getName());
     }
 
 
 
 
     @PostMapping
-    public Point create(@Valid @RequestBody Point point, @RequestHeader("Authorization") String token) {
-        return pointService.create(point, token);
+    public Point create(@Valid @RequestBody Point point, Principal principal) {
+        return pointService.create(point, principal.getName());
     }
 
 
@@ -50,9 +51,9 @@ public class PointController {
     public Point update(
             @PathVariable("id") Long id,
             @Valid @RequestBody Point point,
-            @RequestHeader("Authorization") String token
+            Principal principal
     ) {
-        return pointService.update(id, point, token);
+        return pointService.update(id, point, principal.getName());
     }
 
 
@@ -62,8 +63,8 @@ public class PointController {
 
     @DeleteMapping("{id}")
     @Secured("ROLE_ADMIN")
-    public void delete(@PathVariable("id") Long id, @RequestHeader("Authorization") String token) {
-        pointService.delete(id, token);
+    public void delete(@PathVariable("id") Long id, Principal principal) {
+        pointService.delete(id, principal.getName());
     }
 
 

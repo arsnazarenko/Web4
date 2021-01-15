@@ -9,12 +9,12 @@ import ru.itmo.students.springRest.domain.User;
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
-    private UserService userService;
+    private UserAuthService userAuthService;
 
 
     @Override
     public CustomUserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userService.findByLogin(s);
+        User user = userAuthService.findByLogin(s);
         if (user == null) {
 //            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
             throw new UsernameNotFoundException("User with login " + s + " not found");

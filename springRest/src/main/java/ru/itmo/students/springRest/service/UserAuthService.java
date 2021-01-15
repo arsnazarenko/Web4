@@ -8,7 +8,7 @@ import ru.itmo.students.springRest.domain.UserRole;
 import ru.itmo.students.springRest.repo.UserRepo;
 
 @Service
-public class UserService {
+public class UserAuthService {
     @Autowired
     private  UserRepo userRepo;
 
