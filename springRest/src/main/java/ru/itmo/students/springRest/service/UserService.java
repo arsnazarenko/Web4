@@ -8,7 +8,7 @@ import ru.itmo.students.springRest.domain.UserRole;
 import ru.itmo.students.springRest.repo.UserRepo;
 
 @Service
-public class UsersService {
+public class UserService {
     @Autowired
     private  UserRepo userRepo;
 
@@ -16,7 +16,7 @@ public class UsersService {
     private  PasswordEncoder passwordEncoder;
 
 
-    public User saveUser(User user) {
+    public User addNewUser(User user) {
         user.setRole(UserRole.ROLE_USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         //если пользователя с таким логином нет
@@ -39,4 +39,5 @@ public class UsersService {
         }
         return null;
     }
+
 }

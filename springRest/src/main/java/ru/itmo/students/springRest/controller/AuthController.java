@@ -9,14 +9,13 @@ import org.springframework.web.server.ResponseStatusException;
 import ru.itmo.students.springRest.config.jwt.JwtProvider;
 import ru.itmo.students.springRest.domain.auth.*;
 import ru.itmo.students.springRest.domain.User;
-import ru.itmo.students.springRest.service.UsersService;
+import ru.itmo.students.springRest.service.UserService;
 import javax.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController {
     @Autowired
-    private UsersService userService;
+    private UserService userService;
 
     @Autowired
     private JwtProvider jwtProvider;
@@ -26,7 +25,7 @@ public class AuthController {
         User user = new User();
         user.setPassword(registrationRequest.getPassword());
         user.setLogin(registrationRequest.getLogin());
-        if (userService.saveUser(user) != null) {
+        if (userService.addNewUser(user) != null) {
             return new RegistrationResponse(user.getLogin(), RegisterStatus.SUCCESS);
         }
         return new RegistrationResponse(user.getLogin(), RegisterStatus.RESERVED);
