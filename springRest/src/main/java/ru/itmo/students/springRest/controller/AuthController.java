@@ -1,6 +1,7 @@
 package ru.itmo.students.springRest.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,24 +21,24 @@ public class AuthController {
     private JwtProvider jwtProvider;
 
     @PostMapping("/register")
-    public RegistrationResponse registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
+    public ResponseEntity<RegistrationResponse> registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
         User user = new User();
         user.setPassword(registrationRequest.getPassword());
         user.setLogin(registrationRequest.getLogin());
         if (userAuthService.addNewUser(user) != null) {
-            return new RegistrationResponse(user.getLogin(), RegisterStatus.SUCCESS);
+            return ResponseEntity.status(HttpStatus.CREATED).body(new RegistrationResponse(user.getLogin()));
         }
-        return new RegistrationResponse(user.getLogin(), RegisterStatus.RESERVED);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new RegistrationResponse(user.getLogin()));
     }
 
     @PostMapping("/auth")
-    public AuthResponse auth(@RequestBody AuthRequest request) {
+    public ResponseEntity<AuthResponse> auth(@RequestBody @Valid AuthRequest request) {
         User user = userAuthService.findByLoginAndPassword(request.getLogin(), request.getPassword());
         if(user == null) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
         String token = jwtProvider.generateToken(user.getLogin());
-        return new AuthResponse(token);
+        return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(token));
     }
 
 

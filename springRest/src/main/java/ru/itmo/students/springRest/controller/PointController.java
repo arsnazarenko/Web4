@@ -16,7 +16,7 @@ import java.util.Collection;
 public class PointController {
 
     @Autowired
-    PointService pointService;
+    private PointService pointService;
 
 
     @GetMapping

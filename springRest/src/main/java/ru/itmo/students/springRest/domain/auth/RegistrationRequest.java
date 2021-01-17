@@ -2,13 +2,17 @@ package ru.itmo.students.springRest.domain.auth;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Data
 public class RegistrationRequest {
 
-    @NotEmpty
+    @Size(min = 4)
+    @NotBlank
     private String login;
-    @NotEmpty
+    @Size(min = 4, max = 20)
+    @NotBlank
     private String password;
 }

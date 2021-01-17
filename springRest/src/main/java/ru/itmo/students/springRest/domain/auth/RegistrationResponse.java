@@ -7,7 +7,6 @@ import lombok.Data;
 @AllArgsConstructor
 public class RegistrationResponse {
     private String login;
-    private RegisterStatus status;
 
 
 }
