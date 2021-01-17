@@ -12,7 +12,7 @@ public class RegistrationRequest {
     @Size(min = 4)
     @NotBlank
     private String login;
-    @Size(min = 4, max = 20)
+    @Size(min = 4)
     @NotBlank
     private String password;
 }

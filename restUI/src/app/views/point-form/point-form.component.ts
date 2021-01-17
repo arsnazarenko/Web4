@@ -16,7 +16,6 @@ export class PointFormComponent implements OnInit, OnDestroy {
   @Input() points: Point[];
   @Output() pointsUpdated = new EventEmitter<any>();
 
-
   private changeSubscription: Subscription;
 
   constructor(private pointService: PointService) {
