@@ -1,7 +1,6 @@
 package ru.itmo.students.springRest.service;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+import ru.itmo.students.springRest.exception.RadiusValueInvalidException;
 import ru.itmo.students.springRest.domain.Point;
 
 
@@ -12,7 +11,7 @@ public class AreaCheckService {
         Double y = point.getY();
         Double r = point.getR();
         if (r <= 0) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new RadiusValueInvalidException(r);
         }
         Boolean result =  ((x >= -r && x <= 0 && y >= -r/2 && y <= 0) ||
                 (x <= 0 && y >= 0 && (y - 2 * x - r <= 0) ||

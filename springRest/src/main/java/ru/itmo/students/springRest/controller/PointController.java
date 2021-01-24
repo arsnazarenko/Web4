@@ -2,18 +2,22 @@ package ru.itmo.students.springRest.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.security.access.annotation.Secured;
+
 import org.springframework.web.bind.annotation.*;
 import ru.itmo.students.springRest.domain.Point;
 import ru.itmo.students.springRest.service.PointService;
+
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.Collection;
 
+
 @RestController
 @RequestMapping("point")
 public class PointController {
+
 
     @Autowired
     private PointService pointService;
@@ -34,13 +38,10 @@ public class PointController {
     }
 
 
-
-
     @PostMapping
     public Point create(@Valid @RequestBody Point point, Principal principal) {
         return pointService.create(point, principal.getName());
     }
-
 
 
     // Для проверки:
@@ -57,7 +58,6 @@ public class PointController {
     }
 
 
-
     // Для проверки:
     // fetch('point/4', {method: 'PUT', headers: {'Content-type': 'application/json'}, body: JSON.stringify({x: 12, y: 4, r: 23})}).then(result => console.log(result));
 
@@ -66,8 +66,6 @@ public class PointController {
     public void delete(@PathVariable("id") Long id, Principal principal) {
         pointService.delete(id, principal.getName());
     }
-
-
 
 
 }

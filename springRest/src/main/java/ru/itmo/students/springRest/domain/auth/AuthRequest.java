@@ -1,15 +1,14 @@
 package ru.itmo.students.springRest.domain.auth;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 @Data
+@AllArgsConstructor
 public class AuthRequest {
-    @NotEmpty
+    @NotEmpty(message = "{login.not.empty}")
     private String login;
-    @NotEmpty
+    @NotEmpty(message = "{password.not.empty}")
     private String password;
 }

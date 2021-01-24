@@ -2,9 +2,8 @@ package ru.itmo.students.springRest.service;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
+import ru.itmo.students.springRest.exception.ResourceNotFoundException;
 import ru.itmo.students.springRest.domain.Point;
 import ru.itmo.students.springRest.domain.User;
 import ru.itmo.students.springRest.repo.PointRepo;
@@ -28,7 +27,7 @@ public class PointService {
 
     public Point getOne(Long id, String login) {
         User user = userRepo.findByLogin(login);
-        return pointRepo.findByIdAndUser(id, user).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return pointRepo.findByIdAndUser(id, user).orElseThrow(ResourceNotFoundException::new);
     }
 
     public Point create(Point point, String login) {
@@ -42,7 +41,7 @@ public class PointService {
 
     public Point update(Long id, Point point, String login) {
         User user = userRepo.findByLogin(login);
-        Point pointFromDb = pointRepo.findByIdAndUser(id, user).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Point pointFromDb = pointRepo.findByIdAndUser(id, user).orElseThrow(ResourceNotFoundException::new);
         areaCheckService.evaluateHitResult(point);
         BeanUtils.copyProperties(point, pointFromDb, "id", "user");
         pointRepo.save(pointFromDb);
@@ -54,7 +53,7 @@ public class PointService {
         User user = userRepo.findByLogin(login);
         pointRepo.delete(
                 pointRepo.findByIdAndUser(id, user).
-                        orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND))
+                        orElseThrow(ResourceNotFoundException::new)
         );
     }
 

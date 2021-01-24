@@ -2,8 +2,9 @@ target/
 out
 .idea/
 *.iml
-resources/
+**/resources/static/
 node_modules/
+application.properties
 
 # compiled output
 dist
