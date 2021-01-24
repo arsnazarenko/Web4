@@ -123,7 +123,7 @@ public class CustomRestExceptionHandler extends ResponseEntityExceptionHandler {
         logger.error(ex.getLocalizedMessage());
         Double reqValue = ((RadiusValueInvalidException) ex).getRequestValue();
         String error = messageSource.getMessage("invalid.radius.error", new Double[]{reqValue}, request.getLocale());
-        ApiError apiError = new ApiError(HttpStatus.NOT_FOUND, msg, error, request.getDescription(false).substring(4));
+        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, msg, error, request.getDescription(false).substring(4));
         return new ResponseEntity<Object>(apiError, new HttpHeaders(), apiError.getStatus());
     }
 

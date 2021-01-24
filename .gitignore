@@ -2,7 +2,7 @@ target/
 out
 .idea/
 *.iml
-**/resources/static/
+static/
 node_modules/
 application.properties
 
