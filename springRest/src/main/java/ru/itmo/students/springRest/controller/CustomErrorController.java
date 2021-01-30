@@ -16,7 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.Map;
 
-
+/**
+ * Class for 404 page from frontend
+ */
 public class CustomErrorController extends BasicErrorController {
     public CustomErrorController(ErrorAttributes errorAttributes, ErrorProperties errorProperties) {
         super(errorAttributes, errorProperties);

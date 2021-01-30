@@ -47,9 +47,9 @@ public class LocaleConfig {
     }
 
 
-    @Bean
-    public BasicErrorController basicErrorController() {
-        return new CustomErrorController(new DefaultErrorAttributes(), new ErrorProperties());
-    }
+//    @Bean
+//    public BasicErrorController basicErrorController() {
+//        return new CustomErrorController(new DefaultErrorAttributes(), new ErrorProperties());
+//    }
 
 }
